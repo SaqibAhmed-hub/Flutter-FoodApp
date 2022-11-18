@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_delivery_ui/data/data.dart';
+import 'package:flutter_food_delivery_ui/widgets/recent_orders.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.verified_user),
+          icon: Icon(Icons.account_circle),
           iconSize: 30.0,
           onPressed: () {},
         ),
@@ -47,10 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: TextField(
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                  fillColor: Colors.white,
+                  filled: true,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide(width: 0.8)),
-                  hintText: "Search Food or Restraurants",
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: BorderSide(
+                          width: 0.8, color: Theme.of(context).primaryColor)
+                  ),
+                  hintText: "Search Food or Restaurants",
                   prefixIcon: Icon(
                     Icons.search,
                     size: 30.0,
@@ -58,10 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   suffixIcon: IconButton(
                     icon: Icon(Icons.close),
                     onPressed: () {},
-                  )
-              ),
+                  )),
             ),
-          )
+          ),
+          RecentOrders()
         ],
       ),
     );
