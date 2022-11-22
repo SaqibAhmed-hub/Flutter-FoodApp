@@ -18,13 +18,12 @@ class RecentOrders extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 22.0,
                 fontWeight: FontWeight.w600,
-                letterSpacing: 1.1),
+                letterSpacing: 1.0),
           ),
         ),
         // This is the RecyclerView in flutter
         Container(
           height: 120.0,
-          color: Colors.white,
           child: ListView.builder(
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.only(left: 8.0),

@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food_delivery_ui/data/data.dart';
+import 'package:flutter_food_delivery_ui/models/restaurant.dart';
+import 'package:flutter_food_delivery_ui/widgets/RatingStar.dart';
 import 'package:flutter_food_delivery_ui/widgets/recent_orders.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -56,8 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide(
-                          width: 0.8, color: Theme.of(context).primaryColor)
-                  ),
+                          width: 0.8, color: Theme.of(context).primaryColor)),
                   hintText: "Search Food or Restaurants",
                   prefixIcon: Icon(
                     Icons.search,
@@ -69,9 +71,78 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
             ),
           ),
-          RecentOrders()
+          RecentOrders(), // Recent Order
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text(
+                    "NearBy Restarunts",
+                    style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1.0),
+                  ),
+                ),
+                _buildRestarunts()
+              ],
+            ),
+          )
         ],
       ),
     );
+  }
+
+  _buildRestarunts() {
+    List<Widget> restaurantList = [];
+    restaurants.forEach((Restaurant restaurant) {
+      restaurantList.add(Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.0),
+            border: Border.all(color: Colors.grey)),
+        child: Row(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.0),
+              child: Image(
+                height: 150.0,
+                width: 150.0,
+                image: AssetImage(
+                  restaurant.imageUrl,
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    restaurant.name,
+                    style:
+                        TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: 4.0),
+                  RatingStar(restaurant.rating),
+                  SizedBox(height: 6.0,),
+                  Text(
+                    restaurant.address,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 4.0),
+                  Text("0.2 miles aways")
+                ],
+              ),
+            )
+          ],
+        ),
+      ));
+    });
+    return Column(children: restaurantList);
   }
 }
