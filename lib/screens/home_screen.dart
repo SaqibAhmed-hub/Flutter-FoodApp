@@ -101,50 +101,53 @@ class _HomeScreenState extends State<HomeScreen> {
       restaurantList.add(
           GestureDetector(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => RestaruntScreen(restarunt: restaurant))),
-            child: Container(
+            child: Hero(
+              tag: restaurant.imageUrl,
+              child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
         decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15.0),
-              border: Border.all(color: Colors.grey)),
-        child: Row(
-            children: <Widget>[
-              ClipRRect(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15.0),
-                child: Image(
-                  height: 150.0,
-                  width: 150.0,
-                  image: AssetImage(
-                    restaurant.imageUrl,
+                border: Border.all(color: Colors.grey)),
+        child: Row(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image(
+                    height: 150.0,
+                    width: 150.0,
+                    image: AssetImage(
+                      restaurant.imageUrl,
+                    ),
+                    fit: BoxFit.cover,
                   ),
-                  fit: BoxFit.cover,
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      restaurant.name,
-                      style:
-                          TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: 4.0),
-                    RatingStar(restaurant.rating),
-                    SizedBox(height: 6.0,),
-                    Text(
-                      restaurant.address,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(height: 4.0),
-                    Text("0.2 miles aways")
-                  ],
-                ),
-              )
-            ],
+                Container(
+                  margin: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        restaurant.name,
+                        style:
+                            TextStyle(fontSize: 14.0, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: 4.0),
+                      RatingStar(restaurant.rating),
+                      SizedBox(height: 6.0,),
+                      Text(
+                        restaurant.address,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 4.0),
+                      Text("0.2 miles aways")
+                    ],
+                  ),
+                )
+              ],
         ),
       ),
+            ),
           )
       );
     });
