@@ -4,6 +4,7 @@ import 'package:flutter_food_delivery_ui/models/restaurant.dart';
 import 'package:flutter_food_delivery_ui/widgets/RatingStar.dart';
 import 'package:flutter_food_delivery_ui/widgets/recent_orders.dart';
 import 'RestaruntScreen.dart';
+import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,10 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold),
             ),
             onPressed: () {
-              //Snackbar in flutter
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("Your Cart Item "),
-              ));
+              // //Snackbar in flutter
+              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              //   content: Text("Your Cart Item "),
+              // ));
+              Navigator.push(context, MaterialPageRoute(builder: (_) => CartScreen()));
             },
           )
         ],
